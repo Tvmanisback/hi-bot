@@ -9,7 +9,7 @@ import { existsSync, readFileSync, writeFileSync } from "node:fs";
 const TOKEN = process.env.YAPPER_TOKEN;
 
 if (!TOKEN) {
-console.error(“ERROR: The YAPPER_TOKEN environment variable is missing.”);
+console.error("ERROR: The YAPPER_TOKEN environment variable is missing.");
 process.exit(1);
 }
 
