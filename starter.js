@@ -19,7 +19,7 @@ const bot = new Bot(TOKEN);
 // DATA
 // ========================================
 
-const WARNINGS_FILE = “./warnings.json”;
+const WARNINGS_FILE = "./warnings.json";
 
 let warnings = {};
 
