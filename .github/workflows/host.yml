@@ -1,0 +1,44 @@
+name: Hi Bot
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  run-bot:
+    name: Start Hi Bot
+    runs-on: ubuntu-latest
+    timeout-minutes: 350
+
+    steps:
+      - name: Download repository
+        uses: actions/checkout@v4
+
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Check required files
+        run: |
+          test -f starter.js
+          test -f yapper.js
+          test -f package.json
+
+      - name: Check JavaScript
+        run: npm run check
+
+      - name: Start Hi Bot
+        env:
+          YAPPER_TOKEN: ${{ secrets.YAPPER_TOKEN }}
+        run: |
+          if [ -z "$YAPPER_TOKEN" ]; then
+            echo "Missing YAPPER_TOKEN repository secret."
+            exit 1
+          fi
+          npm start
