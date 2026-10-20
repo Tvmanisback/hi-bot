@@ -1,6 +1,6 @@
 import { Bot } from "./yapper.js";
 import { randomInt } from "node:crypto";
-import { existsSync, readFileSync, writeFileSync } from “node:fs”;
+import { existsSync, readFileSync, writeFileSync } from "node:fs";
 
 // ========================================
 // HI BOT — CONFIGURATION
