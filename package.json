@@ -1,0 +1,13 @@
+{
+  "name": "hi-bot",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "node starter.js",
+    "check": "node --check starter.js && node --check yapper.js"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}
