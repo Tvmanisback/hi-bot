@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024">
+<defs><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#17152f"/><stop offset="1" stop-color="#5426a8"/></linearGradient><linearGradient id="face" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#9cf7ff"/><stop offset="1" stop-color="#7d8cff"/></linearGradient><filter id="glow"><feGaussianBlur stdDeviation="18"/></filter></defs>
+<rect width="1024" height="1024" rx="230" fill="url(#bg)"/><circle cx="512" cy="480" r="330" fill="#9b78ff" opacity=".2" filter="url(#glow)"/>
+<path d="M512 160c-184 0-324 133-324 320v160c0 134 108 242 242 242h164c134 0 242-108 242-242V480c0-187-140-320-324-320Z" fill="url(#face)" stroke="#e7fbff" stroke-width="18"/>
+<path d="M370 470c34-44 78-66 142-66s108 22 142 66" fill="none" stroke="#24234a" stroke-width="28" stroke-linecap="round"/>
+<ellipse cx="405" cy="560" rx="35" ry="48" fill="#24234a"/><ellipse cx="619" cy="560" rx="35" ry="48" fill="#24234a"/>
+<path d="M435 675q77 75 154 0" fill="none" stroke="#24234a" stroke-width="25" stroke-linecap="round"/>
+<path d="M512 110v-54m-60 66-26-42m146 42 26-42" stroke="#c8faff" stroke-width="18" stroke-linecap="round"/>
+<text x="512" y="900" text-anchor="middle" font-family="Arial,sans-serif" font-size="86" font-weight="900" letter-spacing="8" fill="#fff">MEAM</text></svg>
