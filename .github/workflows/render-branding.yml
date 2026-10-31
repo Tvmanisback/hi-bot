@@ -1,0 +1,29 @@
+name: Render MeaM branding
+on:
+  push:
+    paths:
+      - "assets/*.svg"
+      - "scripts/render_branding.py"
+      - ".github/workflows/render-branding.yml"
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+      - run: pip install cairosvg
+      - run: python scripts/render_branding.py
+      - name: Commit PNG assets
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/*.png
+          if ! git diff --cached --quiet; then
+            git commit -m "Add rendered MeaM PNG branding"
+            git push
+          fi
