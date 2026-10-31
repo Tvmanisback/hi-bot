@@ -63,7 +63,7 @@ export function setup(bot) {
     "Party: /animal /pet /dance /scenario /award /superpower /alienname /petmood /rate /luck /weather /headline /bandname /planet /monster /excuse /complaint /plot /quest /catchphrase /sound /dancebattle /bossfight /treasure /randomchallenge /votefun /shipname /duel /emojiweather /mysterybox",
     "Creative: /story /madlibs /twister /alphabet /acronym",
     "No moderation clutter. Just fun. 🎉"
-  ].join("\n"));
+  ].join("\n")));
 
   simple("compliment", "Get a friendly compliment.", () => pick(["You're bringing good energy today. ✨", "Your ideas deserve a chance to shine. 🌟", "You make the internet a little more interesting. 😎", "Keep being curious and creative. 🚀"]));
   simple("roast", "Get a gentle, friendly roast.", () => pick(["Your Wi-Fi has more commitment than your attention span. 😂", "You bring 'I'll do it in five minutes' energy. 😭", "Your tabs have tabs. Please seek organization. 💀", "Even your loading screen needs a loading screen."]));
