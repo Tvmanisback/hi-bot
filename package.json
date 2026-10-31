@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "start": "node starter.js",
-    "check": "node --check starter.js && node --check yapper.js"
+    "check": "node --check starter.js && node --check yapper.js && node --check cogs/extras.js"
   },
   "engines": {
     "node": ">=22"
