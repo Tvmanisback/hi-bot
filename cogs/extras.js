@@ -62,7 +62,7 @@ export function setup(bot) {
     "Games: /trivia, /riddle, /scramble, /guessnumber, /mathquiz, /truefalse, /oddoneout, /emojiquiz, /memory, /wordchain, /anagram, /quickquiz, /finishstory, /challenge, /brainbreak",
     "Text: /reverse, /uppercase, /lowercase, /titlecase, /wordcount, /charcount, /repeat, /mockcase, /claptext, /binary, /initials, /vowels, /consonants, /hashtag, /quoteformat",
     "Utilities: /date, /utc, /timestamp, /serverid, /userid, /botinfo, /suggest, /feedback",
-    "That’s 64 new commands! Try /newhelp for a compact list."
+    "That’s 72 new commands! Try /newhelp for a compact list."
   ].join("\n")));
 
   simple("compliment", "Get a friendly compliment.", () => pick(["You're bringing good energy today. ✨", "Your ideas deserve a chance to shine. 🌟", "You make the internet a little more interesting. 😎", "Keep being curious and creative. 🚀"]));
@@ -100,7 +100,7 @@ export function setup(bot) {
   add("trivia", "Get a trivia question and answer.", (msg) => { const q = pick(trivia); msg.reply("🧠 " + q[0] + "\nAnswer: ||" + q[1] + "||"); });
   add("riddle", "Get a riddle with its answer hidden.", (msg) => { const r = pick(riddles); msg.reply("🧩 " + r[0] + "\nAnswer: ||" + r[1] + "||"); });
   add("scramble", "Get a scrambled word to solve.", (msg) => { const word = pick(["planet", "puzzle", "orange", "guitar", "rocket", "garden"]); const scrambled = word.split("").sort(() => Math.random() - 0.5).join(""); msg.reply("🔤 Unscramble: **" + scrambled + "**"); });
-  add("guessnumber", "Play a number guessing mini-game.", (msg) => { const n = randomInt(1, 11); msg.reply("🔢 I picked a number from 1–10. Try /guess " + n + " (this round's answer is shown for a quick demo)."); });
+  add("guessnumber", "Play a number guessing mini-game.", (msg) => { msg.reply("🔢 I picked a demo number from 1–10. Try /guess 7 to test the sample round!"); });
   add("guess", "Check a number against a sample number.", (msg) => { const n = Number(msg.args); msg.reply(Number.isInteger(n) && n >= 1 && n <= 10 ? (n === 7 ? "🎉 Correct! The sample number was 7." : "Not this time! The sample number is 7. Try again.") : "Usage: /guess 1-10"); });
   add("mathquiz", "Get a quick math question.", (msg) => { const a = randomInt(2, 13), b = randomInt(2, 13); msg.reply(`➗ What is ${a} × ${b}? Answer: ||${a * b}||`); });
   simple("truefalse", "Get a true-or-false fact.", () => pick(["True or false: Octopuses have three hearts. Answer: ||True||", "True or false: The Sun is a planet. Answer: ||False||", "True or false: A hexagon has six sides. Answer: ||True||"]));
