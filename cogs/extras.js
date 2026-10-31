@@ -52,7 +52,7 @@ export function setup(bot) {
     "Fun: /compliment /roast /fact /quote /motivate /fortune /vibe /hype /joke2 /pun /dadjoke /clap /emoji /emojify /randomemoji /randomcolor /colorhex /choose /wouldyourather /thisorthat /yesno /coin /magic /nickname /secret /mood /story /madlibs /twister /alphabet /acronym",
     "Games: /trivia /riddle /scramble /guessnumber /mathquiz /truefalse /oddoneout /emojiquiz /memory /wordchain /anagram /quickquiz /finishstory /challenge /brainbreak",
     "Text tools: /reverse /uppercase /lowercase /titlecase /wordcount /charcount /repeat /mockcase /claptext /binary /initials /vowels /consonants /hashtag /quoteformat",
-    "Utilities: /date /utc /timestamp /serverid /userid /botinfo /suggest /feedback",
+    "Party extras: /animal /pet /dance /scenario /award /superpower /alienname /rate /luck /weather /headline /bandname /planet /monster /excuse /plot /quest /catchphrase /sound /dancebattle /bossfight /treasure /randomchallenge /duel /mysterybox",
     "Use /commands for the full descriptions."
   ].join("\n"));
 
@@ -61,8 +61,8 @@ export function setup(bot) {
     "Fun: /compliment, /roast, /fact, /quote, /motivate, /fortune, /vibe, /hype, /joke2, /pun, /dadjoke, /clap, /emoji, /emojify, /randomemoji, /randomcolor, /colorhex, /choose, /wouldyourather, /thisorthat, /yesno, /coin, /magic, /nickname, /secret, /mood, /story, /madlibs, /twister, /alphabet, /acronym",
     "Games: /trivia, /riddle, /scramble, /guessnumber, /mathquiz, /truefalse, /oddoneout, /emojiquiz, /memory, /wordchain, /anagram, /quickquiz, /finishstory, /challenge, /brainbreak",
     "Text: /reverse, /uppercase, /lowercase, /titlecase, /wordcount, /charcount, /repeat, /mockcase, /claptext, /binary, /initials, /vowels, /consonants, /hashtag, /quoteformat",
-    "Utilities: /date, /utc, /timestamp, /serverid, /userid, /botinfo, /suggest, /feedback",
-    "That’s 72 new commands! Try /newhelp for a compact list."
+    "Party extras: /animal /pet /dance /scenario /award /superpower /alienname /rate /luck /weather /headline /bandname /planet /monster /excuse /plot /quest /catchphrase /sound /dancebattle /bossfight /treasure /randomchallenge /duel /mysterybox",
+    "Explore the fun command collection with /commands! Try /newhelp for a compact list."
   ].join("\n")));
 
   simple("compliment", "Get a friendly compliment.", () => pick(["You're bringing good energy today. ✨", "Your ideas deserve a chance to shine. 🌟", "You make the internet a little more interesting. 😎", "Keep being curious and creative. 🚀"]));
@@ -114,29 +114,45 @@ export function setup(bot) {
   simple("challenge", "Get a harmless creative challenge.", () => pick(["Draw a robot using only circles and squares.", "Invent a name for a new planet.", "Write a story in exactly five words.", "Describe your favorite game without naming it."]));
   simple("brainbreak", "Get a quick brain break prompt.", () => pick(["Name five things that are blue.", "Think of three ways to reuse an empty box.", "Try to name an animal for every letter you can.", "Take a moment to stretch comfortably and rest your eyes."]));
 
-  const textInput = (msg, usage, fn) => { const value = clean(msg.args); msg.reply(value ? truncate(fn(value)) : usage); };
-  add("reverse", "Reverse your text.", (msg) => textInput(msg, "Usage: /reverse hello", s => [...s].reverse().join("")));
-  add("uppercase", "Convert text to uppercase.", (msg) => textInput(msg, "Usage: /uppercase hello", s => s.toUpperCase()));
-  add("lowercase", "Convert text to lowercase.", (msg) => textInput(msg, "Usage: /lowercase HELLO", s => s.toLowerCase()));
-  add("titlecase", "Convert text to title case.", (msg) => textInput(msg, "Usage: /titlecase hello world", s => s.toLowerCase().replace(/\b\w/g, c => c.toUpperCase())));
-  add("wordcount", "Count words in your text.", (msg) => textInput(msg, "Usage: /wordcount your text", s => "📝 Words: " + (s.match(/\S+/g) || []).length));
-  add("charcount", "Count characters in your text.", (msg) => textInput(msg, "Usage: /charcount your text", s => "🔠 Characters: " + s.length));
-  add("repeat", "Repeat text up to three times.", (msg) => { const s = clean(msg.args); msg.reply(s ? truncate(Array( Math.min(3, Math.max(1, Number(msg.argv?.[0]) || 2))).fill(msg.argv?.slice(1).join(" ") || s).join(" ")) : "Usage: /repeat text"); });
-  add("mockcase", "Convert text to alternating case.", (msg) => textInput(msg, "Usage: /mockcase hello there", s => [...s].map((c,i) => i % 2 ? c.toUpperCase() : c.toLowerCase()).join("")));
-  add("claptext", "Put claps between words.", (msg) => textInput(msg, "Usage: /claptext hello world", s => s.split(/\s+/).join(" 👏 ")));
-  add("binary", "Convert text to binary.", (msg) => textInput(msg, "Usage: /binary hi", s => [...s].map(c => c.charCodeAt(0).toString(2).padStart(8,"0")).join(" ").slice(0, 850)));
-  add("initials", "Get the initials from a phrase.", (msg) => textInput(msg, "Usage: /initials hello world", s => s.split(/\s+/).map(w => w[0]).join("").toUpperCase()));
-  add("vowels", "Count vowels in text.", (msg) => textInput(msg, "Usage: /vowels hello", s => "Vowels: " + (s.match(/[aeiou]/gi) || []).length));
-  add("consonants", "Count consonants in text.", (msg) => textInput(msg, "Usage: /consonants hello", s => "Consonants: " + (s.match(/[bcdfghjklmnpqrstvwxyz]/gi) || []).length));
-  add("hashtag", "Turn text into a hashtag.", (msg) => textInput(msg, "Usage: /hashtag my cool project", s => "#" + s.replace(/[^a-z0-9]+/gi, "").slice(0, 60)));
-  add("quoteformat", "Format your text as a quote.", (msg) => textInput(msg, "Usage: /quoteformat words to remember", s => "💬 “" + s + "”"));
 
-  simple("date", "Show today's date in UTC.", () => "📅 " + new Date().toISOString().slice(0, 10) + " (UTC)");
-  simple("utc", "Show the current UTC time.", () => "🕒 " + new Date().toISOString().slice(11, 19) + " UTC");
-  simple("timestamp", "Show the current Unix timestamp.", () => "⏱️ " + Math.floor(Date.now() / 1000));
-  add("serverid", "Show the current server ID.", (msg) => msg.reply(msg.server_id ? "🏠 Server ID: " + msg.server_id : "Use this command inside a server."));
-  add("userid", "Show your account ID.", (msg) => msg.reply("👤 Your user ID: " + (msg.author_id ?? "Unavailable")));
-  simple("botinfo", "Show Hi Bot information.", () => "🤖 **Hi Bot**\nA fun community bot for Yapper.\nTry /commands to explore its extra commands.");
-  add("suggest", "Send a feature suggestion in the current channel.", (msg) => { const s = clean(msg.args); msg.reply(s ? "💡 Suggestion noted in this channel: " + truncate(s, 500) : "Usage: /suggest your idea"); });
-  add("feedback", "Share feedback about Hi Bot.", (msg) => { const s = clean(msg.args); msg.reply(s ? "📝 Thanks for the feedback! This command displays it here; it does not send it to a private inbox.\n" + truncate(s, 500) : "Usage: /feedback your feedback"); });
+  // More party games and silly commands
+  const animals = ["🦊 Fox", "🐼 Panda", "🦦 Otter", "🦉 Owl", "🐸 Frog", "🦖 Dinosaur", "🦋 Butterfly", "🦝 Raccoon"];
+  const pets = ["Pixel the dragon", "Sir Waffles the cat", "Bubbles the axolotl", "Noodle the penguin", "Mochi the puppy"];
+  const dances = ["🕺 The robot", "💃 The moonwalk", "🪩 The disco shuffle", "🤸 The spaghetti noodle", "🦆 The wobbly duck"];
+  const scenarios = ["You wake up and discover your toaster can talk. What does it say?", "A penguin hands you a mysterious key. What do you unlock?", "You find a tiny door in a tree. Do you open it?", "Your backpack starts giving you life advice. What's its first tip?", "A friendly alien asks you to explain pizza. How do you describe it?"];
+  const fortunes = ["A surprise laugh is approaching.", "Your next idea will be delightfully weird.", "A tiny victory is still a victory.", "The snack you seek is closer than you think.", "Your future contains excellent playlists."];
+
+  simple("animal", "Get a random animal.", () => "🐾 Your animal: " + pick(animals));
+  simple("pet", "Adopt a random imaginary pet.", () => "🏡 You adopted **" + pick(pets) + "**! Give your new pal a name.");
+  simple("dance", "Pick a ridiculous dance move.", () => "🪩 Dance move: " + pick(dances));
+  simple("scenario", "Get a random silly scenario.", () => "🎬 " + pick(scenarios));
+  simple("award", "Receive a completely random award.", () => "🏆 You have won: **" + pick(["Most Likely to Befriend an Alien", "Professional Snack Tester", "CEO of Random Ideas", "Legendary Button Presser", "World Champion of Procrastinating"]) + "**!");
+  simple("superpower", "Get a questionable superpower.", () => "🦸 Your superpower is " + pick(["teleporting exactly three feet", "talking to pigeons", "summoning one slice of pizza", "perfectly guessing the weather", "making elevators play entrance music"]) + "!");
+  simple("alienname", "Generate a goofy alien name.", () => "👽 Your alien name is **" + pick(["Zorp", "Muffin", "Captain Pickles", "Galaxy Bean", "Sir Bloop", "Waffletron"]) + "**.");
+  simple("fortune2", "Get another silly fortune.", () => "🥠 " + pick(fortunes));
+  simple("petmood", "Find out your imaginary pet's mood.", () => pick(["🐾 Your pet is zooming around.", "🐾 Your pet demands snacks.", "🐾 Your pet is taking a very important nap.", "🐾 Your pet has chosen chaos today."]));
+  simple("rate", "Rate something out of 10.", (msg) => "⭐ " + randomInt(1, 11) + "/10 for " + (clean(msg.args) || "your vibe") + "!");
+  simple("luck", "Check your totally scientific luck level.", () => "🍀 Luck level: **" + randomInt(1, 101) + "%**");
+  simple("weather", "Get a pretend weather forecast.", () => "🌦️ Forecast: " + pick(["100% chance of snacks.", "Cloudy with a chance of dragons.", "Sunny with scattered confetti.", "Thunderstorms of pure excitement.", "A gentle breeze of good vibes."]) + " (just for fun!)");
+  simple("headline", "Generate a silly breaking-news headline.", () => "📰 BREAKING: " + pick(["Local potato elected mayor.", "Tiny dragon opens a pancake shop.", "Pigeons announce a new space program.", "Mysterious socks form a union.", "The moon requests a vacation."]));
+  simple("bandname", "Generate a random band name.", () => "🎸 Your band name: **" + pick(["The Neon Pickles", "Cosmic Toast", "The Sleepy Meteors", "Waffle Radio", "Laser Hamsters", "Midnight Pigeons"]) + "**");
+  simple("planet", "Generate a silly planet to visit.", () => "🪐 Welcome to **" + pick(["Pancakia", "Bloopiter", "Snackron", "Wafflestar", "Frogtopia"]) + "**. Local currency: " + pick(["buttons", "marshmallows", "shiny rocks", "tiny hats"]) + ".");
+  simple("monster", "Invent a friendly monster.", () => "👾 Meet **" + pick(["Fluffernox", "Glimbo", "Munchlet", "Boopzilla", "Crumb Goblin"]) + "**! It loves " + pick(["pancakes", "music", "collecting rocks", "bubble baths", "video games"]) + ".");
+  simple("excuse", "Generate a ridiculous harmless excuse.", () => "😅 " + pick(["My imaginary penguin needed technical support.", "A cloud challenged me to a staring contest.", "My socks were having a meeting.", "I got distracted naming a houseplant.", "The calendar said it was a snack emergency."]));
+  simple("complaint", "Make a silly complaint about the universe.", () => "📣 " + pick(["Why do chargers disappear exactly when you need them?", "Who gave mosquitoes permission to exist?", "Why is the last slice always so dramatic?", "Can someone tell Mondays to calm down?"]));
+  simple("plot", "Generate a random movie plot.", () => "🎥 " + pick(["A retired wizard becomes a school bus driver.", "A group of squirrels starts a detective agency.", "A robot enters a baking competition.", "A lost astronaut opens a tiny coffee shop on Mars."]));
+  simple("quest", "Receive a harmless mini quest.", () => "🗺️ QUEST: " + pick(["Find something shaped like a star.", "Invent a superhero name for a household object.", "Draw your dream spaceship.", "Think of three names for a pet dragon.", "Make up a new holiday."]));
+  simple("catchphrase", "Get a random catchphrase.", () => "🎤 " + pick(["That's how the waffle crumbles!", "To the moon and extra cheese!", "Stay frosty, tiny potato!", "Big brain, small sandwich!", "Beep beep, legendary mode!"]));
+  simple("sound", "Get a random sound effect.", () => pick(["💥 KABOOM!", "✨ POOF!", "🐸 Ribbit!", "🚀 WHOOSH!", "🔔 DING!", "🦆 QUACK!"]));
+  simple("dancebattle", "Start a pretend dance battle.", () => "🪩 DANCE BATTLE! " + pick(["Team Robot", "Team Disco", "Team Wobbly Duck"]) + " takes the first turn. Your move!");
+  simple("bossfight", "Face a silly imaginary boss.", () => "⚔️ A wild **" + pick(["Mega Broccoli", "The Homework Hydra", "Lord Lag", "The Sock Gobbler", "King Buffering"]) + "** appears! Your special move is **" + pick(["Mega Bonk", "Confetti Blast", "The Wiggle", "Snack Shield"]) + "**!");
+  simple("treasure", "Find imaginary treasure.", () => "💎 You discovered " + pick(["a golden rubber duck", "the legendary cheesy crown", "a chest full of tiny hats", "an enchanted game controller", "one million invisible coins"]) + "!");
+  simple("randomchallenge", "Get a random silly challenge.", () => "🎯 " + pick(["Describe a potato like it's a luxury product.", "Invent a new emoji and explain it.", "Name five fictional pizza toppings.", "Create a superhero whose power is mildly inconvenient.", "Write a two-sentence story about a talking shoe."]));
+  simple("votefun", "Get a silly either-or vote prompt.", () => "📊 Vote: " + pick(["Dragons 🐉 or dinosaurs 🦖?", "Pancakes 🥞 or waffles 🧇?", "Space 🚀 or deep sea 🌊?", "Cats 🐈 or raccoons 🦝?"]) + " Reply with your pick!");
+  add("shipname", "Combine two names into a silly team name.", (msg) => { const parts = clean(msg.args).split(/\s+/).filter(Boolean); msg.reply(parts.length >= 2 ? "🤝 Team name: **" + (parts[0].slice(0, Math.ceil(parts[0].length/2)) + parts[1].slice(Math.floor(parts[1].length/2))).slice(0,40) + "**" : "Usage: /shipname name1 name2"); });
+  simple("duel", "Run a harmless random duel.", (msg) => "🥊 " + (clean(msg.args) || "You") + " challenges " + pick(["a giant marshmallow", "a confused goose", "a wizard frog", "a sentient toaster"]) + "! Winner: " + pick(["You", "The marshmallow", "Nobody; they became friends"]) + "!");
+  simple("quizme", "Get a quick question with a hidden answer.", () => { const q = pick(trivia); return "🎓 " + q[0] + "\n||Answer: " + q[1] + "||"; });
+  simple("emojiweather", "Get a random emoji forecast.", () => "🌤️ " + pick(["☀️🌈", "🌧️🐸", "⛈️⚡", "❄️🧣", "🌪️🌀", "🌅✨"]));
+  simple("mysterybox", "Open a mystery box.", () => "📦 You opened the mystery box and found: **" + pick(["a tiny crown", "a dancing cactus", "a portal to Waffle Land", "a shiny pebble", "a rubber chicken", "a very polite ghost"]) + "**!");
+
 }
