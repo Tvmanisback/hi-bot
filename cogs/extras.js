@@ -47,23 +47,23 @@ export function setup(bot) {
   ];
   const colors = ["#FF6B6B", "#4ECDC4", "#45B7D1", "#A78BFA", "#F59E0B", "#22C55E", "#F472B6"];
 
-  simple("newhelp", "Show the new Hi Bot command categories.", [
-    "✨ HI BOT — EXTRA COMMANDS",
-    "Fun: /compliment /roast /fact /quote /motivate /fortune /vibe /hype /joke2 /pun /dadjoke /clap /emoji /emojify /randomemoji /randomcolor /colorhex /choose /wouldyourather /thisorthat /yesno /coin /magic /nickname /secret /mood /story /madlibs /twister /alphabet /acronym",
-    "Games: /trivia /riddle /scramble /guessnumber /mathquiz /truefalse /oddoneout /emojiquiz /memory /wordchain /anagram /quickquiz /finishstory /challenge /brainbreak",
-    "Text tools: /reverse /uppercase /lowercase /titlecase /wordcount /charcount /repeat /mockcase /claptext /binary /initials /vowels /consonants /hashtag /quoteformat",
-    "Party extras: /animal /pet /dance /scenario /award /superpower /alienname /rate /luck /weather /headline /bandname /planet /monster /excuse /plot /quest /catchphrase /sound /dancebattle /bossfight /treasure /randomchallenge /duel /mysterybox",
-    "Use /commands for the full descriptions."
+  simple("newhelp", "Show the fun command categories.", [
+    "🎉 HI BOT — FUN COMMANDS",
+    "Random fun: /compliment /roast /fact /quote /motivate /fortune /vibe /hype /joke2 /pun /dadjoke /clap /emoji /emojify /randomemoji /randomcolor /choose /wouldyourather /thisorthat /yesno /magic /nickname /secret /mood",
+    "Games: /trivia /riddle /scramble /guessnumber /guess /mathquiz /truefalse /oddoneout /emojiquiz /memory /wordchain /anagram /quickquiz /finishstory /challenge /brainbreak /quizme",
+    "Party: /animal /pet /dance /scenario /award /superpower /alienname /petmood /rate /luck /weather /headline /bandname /planet /monster /excuse /complaint /plot /quest /catchphrase /sound /dancebattle /bossfight /treasure /randomchallenge /votefun /shipname /duel /emojiweather /mysterybox",
+    "Creative: /story /madlibs /twister /alphabet /acronym",
+    "Use /commands for the full list."
   ].join("\n"));
 
-  add("commands", "List every extra command.", (msg) => msg.reply([
-    "📚 HI BOT — EXTRA COMMANDS",
-    "Fun: /compliment, /roast, /fact, /quote, /motivate, /fortune, /vibe, /hype, /joke2, /pun, /dadjoke, /clap, /emoji, /emojify, /randomemoji, /randomcolor, /colorhex, /choose, /wouldyourather, /thisorthat, /yesno, /coin, /magic, /nickname, /secret, /mood, /story, /madlibs, /twister, /alphabet, /acronym",
-    "Games: /trivia, /riddle, /scramble, /guessnumber, /mathquiz, /truefalse, /oddoneout, /emojiquiz, /memory, /wordchain, /anagram, /quickquiz, /finishstory, /challenge, /brainbreak",
-    "Text: /reverse, /uppercase, /lowercase, /titlecase, /wordcount, /charcount, /repeat, /mockcase, /claptext, /binary, /initials, /vowels, /consonants, /hashtag, /quoteformat",
-    "Party extras: /animal /pet /dance /scenario /award /superpower /alienname /rate /luck /weather /headline /bandname /planet /monster /excuse /plot /quest /catchphrase /sound /dancebattle /bossfight /treasure /randomchallenge /duel /mysterybox",
-    "Explore the fun command collection with /commands! Try /newhelp for a compact list."
-  ].join("\n")));
+  add("commands", "List the fun command collection.", (msg) => msg.reply([
+    "🎊 HI BOT — FUN COMMANDS",
+    "Random: /compliment /roast /fact /quote /motivate /fortune /vibe /hype /joke2 /pun /dadjoke /clap /emoji /emojify /randomemoji /randomcolor /choose /wouldyourather /thisorthat /yesno /magic /nickname /secret /mood /fortune2",
+    "Games: /trivia /riddle /scramble /guessnumber /guess /mathquiz /truefalse /oddoneout /emojiquiz /memory /wordchain /anagram /quickquiz /finishstory /challenge /brainbreak /quizme",
+    "Party: /animal /pet /dance /scenario /award /superpower /alienname /petmood /rate /luck /weather /headline /bandname /planet /monster /excuse /complaint /plot /quest /catchphrase /sound /dancebattle /bossfight /treasure /randomchallenge /votefun /shipname /duel /emojiweather /mysterybox",
+    "Creative: /story /madlibs /twister /alphabet /acronym",
+    "No moderation clutter. Just fun. 🎉"
+  ].join("\n"));
 
   simple("compliment", "Get a friendly compliment.", () => pick(["You're bringing good energy today. ✨", "Your ideas deserve a chance to shine. 🌟", "You make the internet a little more interesting. 😎", "Keep being curious and creative. 🚀"]));
   simple("roast", "Get a gentle, friendly roast.", () => pick(["Your Wi-Fi has more commitment than your attention span. 😂", "You bring 'I'll do it in five minutes' energy. 😭", "Your tabs have tabs. Please seek organization. 💀", "Even your loading screen needs a loading screen."]));
