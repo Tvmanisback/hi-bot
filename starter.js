@@ -124,6 +124,7 @@ bot.command(
       msg,
       [
         "🤖 HI BOT — COMMANDS",
+        "Use /commands or /newhelp to see 72 extra commands!",
         "",
         "🎉 Fun",
         "/8ball <question> — Ask the magic 8-ball.",
